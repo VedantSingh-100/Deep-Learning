@@ -1,0 +1,70 @@
+HW1P2
+
+The current code has the following configuration:
+
+General Configuration
+Epochs: 40
+Batch Size: 2048
+Context: 30
+Initial Learning Rate: 1e-3
+Architecture: Pyramid-Cylindrical 
+Dropout Rate: 0.15
+Number of parameters:22 M
+
+Model Architecture
+
+Input Layer:
+
+Size: input_size
+Hidden Layers (Pyramid Structure):
+
+Layer 1:
+Linear: 1647 units
+Batch Normalization
+GELU Activation
+Dropout: Configured rate
+Layers 2-7 (Similar structure with different units)
+Layer 8:
+Linear: 1500 units
+Batch Normalization
+GELU Activation
+Dropout: Configured rate
+Layers 9-15 (Similar structure with different units)
+Layer 16:
+Linear: 1000 units
+Batch Normalization
+GELU Activation
+Dropout: Configured rate
+Layers 17-22 (Similar structure with different units)
+Layer 23:
+Linear: 100 units
+Batch Normalization
+GELU Activation
+Dropout: Configured rate
+Layer 24:
+Linear: 42 units
+Batch Normalization
+GELU Activation
+Dropout: Configured rate
+
+
+Optimizer and Scheduler Choices:
+Learning Rate Scheduler - CosineAnnealingLR:
+
+Reason: Cosine Annealing schedules are known for helping models converge to a global minimum by gradually reducing the learning rate. This scheduler is suitable for optimization problems where finding a global minimum is challenging. The T_max parameter is set to the total number of epochs.
+
+AdamW Optimizer:
+
+Reason: AdamW is a variant of the Adam optimizer that includes weight decay directly in the update step, which can help prevent overfitting. It's particularly useful when training deep neural networks.
+Betas and Epsilon Values:
+
+Upon thorough experimentation, it was determined that a combination of GELU activation, batch normalization, and the CosineAnnealing learning rate scheduler yielded the most favorable results. To expedite the evaluation process, diverse architectures were explored after optimizing the data processing pipeline for faster results.
+
+Notably, a stepped cylinder architecture emerged as the most effective, showcasing superior performance. This specific architecture demonstrated a balance between model complexity and training efficiency. In contrast, the pyramid architecture exhibited signs of overfitting, and while it demonstrated rapid convergence, it failed to generalize effectively.
+
+In summary, the adoption of GELU activation, batch normalization, and the CosineAnnealing learning rate scheduler, along with the discovery of the optimized stepped cylinder architecture, reflects a strategic approach to enhancing both training efficacy and model performance.
+
+
+
+
+
